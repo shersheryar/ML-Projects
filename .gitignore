@@ -1,1 +1,6 @@
 /datasets
+/datasets/*
+/.vscode/settings.json
+/__pycache__/
+*.pyc
+.venv/*
