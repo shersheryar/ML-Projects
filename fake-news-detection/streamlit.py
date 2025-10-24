@@ -6,7 +6,7 @@ from nltk.stem.porter import PorterStemmer
 
 @st.cache_resource
 def load_model():
-    model = joblib.load("random_forest_model.pkl")      # or your Logistic Regression / SVM model
+    model = joblib.load("random_forest_model.pkl")
     vectorizer = joblib.load("vectorizer.pkl")         
     return model, vectorizer
 
