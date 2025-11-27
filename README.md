@@ -16,6 +16,9 @@ A comprehensive collection of deep learning and machine learning projects demons
 
 ## 1. Attention-Based Deep Learning for Hyper-Local Air Quality Prediction
 
+### 🌐 Live Demo
+**Try the app here:** [https://local-air-quality-prediction.streamlit.app/](https://local-air-quality-prediction.streamlit.app/)
+
 ### 🎯 Objective
 Develop a **Hybrid Transformer-LSTM** deep learning model that forecasts hourly PM₂.₅ levels up to **12 hours ahead** using multivariate environmental time-series data.
 
