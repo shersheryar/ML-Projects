@@ -1,5 +1,5 @@
 """
-🌫️ PM2.5 Air Quality Forecasting Application
+PM2.5 Air Quality Forecasting Application
 ============================================
 A Streamlit web application for predicting PM2.5 air quality levels
 using a Hybrid Transformer-LSTM Deep Learning Model.
@@ -27,7 +27,7 @@ warnings.filterwarnings('ignore')
 # ============================================================================
 st.set_page_config(
     page_title="PM2.5 Air Quality Forecaster",
-    page_icon="🌫️",
+    page_icon="",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -253,26 +253,26 @@ OUTPUT_HORIZON = 12
 
 # Feature descriptions and units
 FEATURE_INFO = {
-    'PM2.5': {'name': 'PM2.5', 'unit': 'μg/m³', 'description': 'Fine Particulate Matter (≤2.5μm)', 'min': 0, 'max': 500, 'default': 50},
-    'PM10': {'name': 'PM10', 'unit': 'μg/m³', 'description': 'Coarse Particulate Matter (≤10μm)', 'min': 0, 'max': 600, 'default': 80},
-    'TEMP': {'name': 'Temperature', 'unit': '°C', 'description': 'Ambient Temperature', 'min': -20, 'max': 45, 'default': 20},
+    'PM2.5': {'name': 'PM2.5', 'unit': 'ug/m3', 'description': 'Fine Particulate Matter (<=2.5um)', 'min': 0, 'max': 500, 'default': 50},
+    'PM10': {'name': 'PM10', 'unit': 'ug/m3', 'description': 'Coarse Particulate Matter (<=10um)', 'min': 0, 'max': 600, 'default': 80},
+    'TEMP': {'name': 'Temperature', 'unit': 'C', 'description': 'Ambient Temperature', 'min': -20, 'max': 45, 'default': 20},
     'PRES': {'name': 'Pressure', 'unit': 'hPa', 'description': 'Atmospheric Pressure', 'min': 980, 'max': 1050, 'default': 1013},
-    'DEWP': {'name': 'Dew Point', 'unit': '°C', 'description': 'Dew Point Temperature', 'min': -40, 'max': 30, 'default': 10},
+    'DEWP': {'name': 'Dew Point', 'unit': 'C', 'description': 'Dew Point Temperature', 'min': -40, 'max': 30, 'default': 10},
     'WSPM': {'name': 'Wind Speed', 'unit': 'm/s', 'description': 'Wind Speed', 'min': 0, 'max': 20, 'default': 2},
-    'NO2': {'name': 'NO₂', 'unit': 'μg/m³', 'description': 'Nitrogen Dioxide', 'min': 0, 'max': 300, 'default': 40},
-    'SO2': {'name': 'SO₂', 'unit': 'μg/m³', 'description': 'Sulfur Dioxide', 'min': 0, 'max': 200, 'default': 15},
-    'CO': {'name': 'CO', 'unit': 'μg/m³', 'description': 'Carbon Monoxide', 'min': 0, 'max': 10000, 'default': 800},
-    'O3': {'name': 'O₃', 'unit': 'μg/m³', 'description': 'Ozone', 'min': 0, 'max': 300, 'default': 50}
+    'NO2': {'name': 'NO2', 'unit': 'ug/m3', 'description': 'Nitrogen Dioxide', 'min': 0, 'max': 300, 'default': 40},
+    'SO2': {'name': 'SO2', 'unit': 'ug/m3', 'description': 'Sulfur Dioxide', 'min': 0, 'max': 200, 'default': 15},
+    'CO': {'name': 'CO', 'unit': 'ug/m3', 'description': 'Carbon Monoxide', 'min': 0, 'max': 10000, 'default': 800},
+    'O3': {'name': 'O3', 'unit': 'ug/m3', 'description': 'Ozone', 'min': 0, 'max': 300, 'default': 50}
 }
 
 # AQI Categories based on PM2.5
 AQI_CATEGORIES = [
-    {'range': (0, 12), 'level': 'Good', 'color': '#4CAF50', 'emoji': '😊', 'advice': 'Air quality is satisfactory. Enjoy outdoor activities!'},
-    {'range': (12.1, 35.4), 'level': 'Moderate', 'color': '#FFEB3B', 'emoji': '😐', 'advice': 'Acceptable air quality. Unusually sensitive people should consider limiting prolonged outdoor exertion.'},
-    {'range': (35.5, 55.4), 'level': 'Unhealthy for Sensitive Groups', 'color': '#FF9800', 'emoji': '😷', 'advice': 'Members of sensitive groups may experience health effects. General public is less likely to be affected.'},
-    {'range': (55.5, 150.4), 'level': 'Unhealthy', 'color': '#F44336', 'emoji': '🤢', 'advice': 'Everyone may begin to experience health effects. Sensitive groups may experience more serious effects.'},
-    {'range': (150.5, 250.4), 'level': 'Very Unhealthy', 'color': '#9C27B0', 'emoji': '🚨', 'advice': 'Health alert: everyone may experience more serious health effects. Avoid outdoor activities.'},
-    {'range': (250.5, 500), 'level': 'Hazardous', 'color': '#7B1FA2', 'emoji': '☠️', 'advice': 'Health warning of emergency conditions. The entire population is likely to be affected. Stay indoors!'}
+    {'range': (0, 12), 'level': 'Good', 'color': '#4CAF50', 'advice': 'Air quality is satisfactory. Enjoy outdoor activities!'},
+    {'range': (12.1, 35.4), 'level': 'Moderate', 'color': '#FFEB3B', 'advice': 'Acceptable air quality. Unusually sensitive people should consider limiting prolonged outdoor exertion.'},
+    {'range': (35.5, 55.4), 'level': 'Unhealthy for Sensitive Groups', 'color': '#FF9800', 'advice': 'Members of sensitive groups may experience health effects. General public is less likely to be affected.'},
+    {'range': (55.5, 150.4), 'level': 'Unhealthy', 'color': '#F44336', 'advice': 'Everyone may begin to experience health effects. Sensitive groups may experience more serious effects.'},
+    {'range': (150.5, 250.4), 'level': 'Very Unhealthy', 'color': '#9C27B0', 'advice': 'Health alert: everyone may experience more serious health effects. Avoid outdoor activities.'},
+    {'range': (250.5, 500), 'level': 'Hazardous', 'color': '#7B1FA2', 'advice': 'Health warning of emergency conditions. The entire population is likely to be affected. Stay indoors!'}
 ]
 
 
@@ -362,7 +362,7 @@ def create_forecast_chart(predictions, current_pm25):
         mode='markers',
         name='Current',
         marker=dict(size=15, color='#00d4ff', symbol='diamond'),
-        hovertemplate='Current: %{y:.1f} μg/m³<extra></extra>'
+        hovertemplate='Current: %{y:.1f} ug/m3<extra></extra>'
     ))
     
     # Add forecast line
@@ -373,7 +373,7 @@ def create_forecast_chart(predictions, current_pm25):
         name='Forecast',
         line=dict(color='#ff6b6b', width=3),
         marker=dict(size=10),
-        hovertemplate='Hour +%{x}: %{y:.1f} μg/m³<extra></extra>'
+        hovertemplate='Hour +%{x}: %{y:.1f} ug/m3<extra></extra>'
     ))
     
     # Add AQI threshold lines
@@ -387,11 +387,11 @@ def create_forecast_chart(predictions, current_pm25):
     # Update layout
     fig.update_layout(
         title=dict(
-            text='🌫️ PM2.5 12-Hour Forecast',
+            text='PM2.5 12-Hour Forecast',
             font=dict(size=20, color='white')
         ),
         xaxis_title='Hours Ahead',
-        yaxis_title='PM2.5 (μg/m³)',
+        yaxis_title='PM2.5 (ug/m3)',
         template='plotly_dark',
         height=450,
         hovermode='x unified',
@@ -415,7 +415,7 @@ def create_gauge_chart(value, title="PM2.5 Level"):
     fig = go.Figure(go.Indicator(
         mode="gauge+number+delta",
         value=value,
-        number={'suffix': ' μg/m³', 'font': {'size': 40, 'color': 'white'}},
+        number={'suffix': ' ug/m3', 'font': {'size': 40, 'color': 'white'}},
         title={'text': title, 'font': {'size': 18, 'color': 'white'}},
         gauge={
             'axis': {'range': [0, 300], 'tickwidth': 1, 'tickcolor': "white"},
@@ -506,7 +506,7 @@ def main():
     # Header
     st.markdown("""
     <div class="main-header">
-        <h1>🌫️ PM2.5 Air Quality Forecaster</h1>
+        <h1>PM2.5 Air Quality Forecaster</h1>
         <p>Hybrid Transformer-LSTM Deep Learning Model for 12-Hour Air Quality Prediction</p>
     </div>
     """, unsafe_allow_html=True)
@@ -515,25 +515,25 @@ def main():
     model, feature_scaler, target_scaler, model_loaded = load_model_and_scalers()
     
     if not model_loaded:
-        st.error("❌ Failed to load the model. Please ensure model files are in the 'model' directory.")
+        st.error("Failed to load the model. Please ensure model files are in the 'model' directory.")
         st.stop()
     
-    st.success("✅ Model loaded successfully!")
+    st.success("Model loaded successfully!")
     
     # Sidebar
     with st.sidebar:
-        st.markdown("## ⚙️ Input Parameters")
+        st.markdown("## Input Parameters")
         st.markdown("---")
         
         # Mode selection
         input_mode = st.radio(
             "Input Mode",
-            ["🎛️ Manual Input", "📊 Sample Data", "📁 Upload CSV"],
+            ["Manual Input", "Sample Data", "Upload CSV"],
             help="Choose how to provide input data"
         )
         
         st.markdown("---")
-        st.markdown("### 📖 About")
+        st.markdown("### About")
         st.markdown("""
         This application uses a **Hybrid Transformer-LSTM** 
         deep learning model to predict PM2.5 air quality 
@@ -549,40 +549,40 @@ def main():
         - PM2.5, PM10 (Particulate Matter)
         - Temperature, Pressure, Dew Point
         - Wind Speed
-        - NO₂, SO₂, CO, O₃ (Pollutants)
+        - NO2, SO2, CO, O3 (Pollutants)
         """)
         
         st.markdown("---")
-        st.markdown("### 👨‍💻 Developer")
+        st.markdown("### Developer")
         st.markdown("**Sheryar Sher**")
         st.markdown("*Attention-Based Deep Learning for Hyper-Local Air Quality Prediction*")
     
     # Main content based on input mode
-    if input_mode == "🎛️ Manual Input":
-        st.markdown("## 📝 Enter Current Environmental Conditions")
+    if input_mode == "Manual Input":
+        st.markdown("## Enter Current Environmental Conditions")
         st.markdown("Provide the current readings from environmental sensors. The model will use these values to generate a 12-hour PM2.5 forecast.")
         
         # Create input columns
         col1, col2, col3 = st.columns(3)
         
         with col1:
-            st.markdown("### 🌡️ Weather Parameters")
-            temp = st.slider("Temperature (°C)", -20.0, 45.0, 20.0, 0.5)
+            st.markdown("### Weather Parameters")
+            temp = st.slider("Temperature (C)", -20.0, 45.0, 20.0, 0.5)
             pres = st.slider("Pressure (hPa)", 980.0, 1050.0, 1013.0, 1.0)
-            dewp = st.slider("Dew Point (°C)", -40.0, 30.0, 10.0, 0.5)
+            dewp = st.slider("Dew Point (C)", -40.0, 30.0, 10.0, 0.5)
             wspm = st.slider("Wind Speed (m/s)", 0.0, 20.0, 2.0, 0.1)
         
         with col2:
-            st.markdown("### 🏭 Particulate Matter")
-            pm25 = st.slider("Current PM2.5 (μg/m³)", 0.0, 500.0, 50.0, 1.0)
-            pm10 = st.slider("PM10 (μg/m³)", 0.0, 600.0, 80.0, 1.0)
+            st.markdown("### Particulate Matter")
+            pm25 = st.slider("Current PM2.5 (ug/m3)", 0.0, 500.0, 50.0, 1.0)
+            pm10 = st.slider("PM10 (ug/m3)", 0.0, 600.0, 80.0, 1.0)
         
         with col3:
-            st.markdown("### 💨 Gas Pollutants")
-            no2 = st.slider("NO₂ (μg/m³)", 0.0, 300.0, 40.0, 1.0)
-            so2 = st.slider("SO₂ (μg/m³)", 0.0, 200.0, 15.0, 1.0)
-            co = st.slider("CO (μg/m³)", 0.0, 10000.0, 800.0, 10.0)
-            o3 = st.slider("O₃ (μg/m³)", 0.0, 300.0, 50.0, 1.0)
+            st.markdown("### Gas Pollutants")
+            no2 = st.slider("NO2 (ug/m3)", 0.0, 300.0, 40.0, 1.0)
+            so2 = st.slider("SO2 (ug/m3)", 0.0, 200.0, 15.0, 1.0)
+            co = st.slider("CO (ug/m3)", 0.0, 10000.0, 800.0, 10.0)
+            o3 = st.slider("O3 (ug/m3)", 0.0, 300.0, 50.0, 1.0)
         
         # Collect feature values
         current_features = {
@@ -595,13 +595,13 @@ def main():
         
         # Predict button
         st.markdown("---")
-        if st.button("🔮 Generate 12-Hour Forecast", type="primary", use_container_width=True):
-            with st.spinner("🧠 Running Hybrid Transformer-LSTM Model..."):
+        if st.button("Generate 12-Hour Forecast", type="primary", use_container_width=True):
+            with st.spinner("Running Hybrid Transformer-LSTM Model..."):
                 predictions = predict_pm25(model, feature_scaler, target_scaler, input_data)
             
             if predictions is not None:
                 st.markdown("---")
-                st.markdown("## 📊 Prediction Results")
+                st.markdown("## Prediction Results")
                 
                 # Display current AQI
                 current_cat = get_aqi_category(pm25)
@@ -615,23 +615,23 @@ def main():
                 with col1:
                     st.metric(
                         label="Current PM2.5",
-                        value=f"{pm25:.1f} μg/m³",
+                        value=f"{pm25:.1f} ug/m3",
                         delta=None
                     )
-                    st.markdown(f"**Status:** {current_cat['emoji']} {current_cat['level']}")
+                    st.markdown(f"**Status:** {current_cat['level']}")
                 
                 with col2:
                     delta = avg_prediction - pm25
                     st.metric(
                         label="Avg Forecast (12h)",
-                        value=f"{avg_prediction:.1f} μg/m³",
-                        delta=f"{delta:+.1f} μg/m³"
+                        value=f"{avg_prediction:.1f} ug/m3",
+                        delta=f"{delta:+.1f} ug/m3"
                     )
                 
                 with col3:
                     st.metric(
                         label="Peak Forecast",
-                        value=f"{max_prediction:.1f} μg/m³",
+                        value=f"{max_prediction:.1f} ug/m3",
                         delta=f"+{max_prediction - pm25:.1f} from current"
                     )
                 
@@ -639,7 +639,7 @@ def main():
                     min_prediction = np.min(predictions)
                     st.metric(
                         label="Min Forecast",
-                        value=f"{min_prediction:.1f} μg/m³",
+                        value=f"{min_prediction:.1f} ug/m3",
                         delta=f"{min_prediction - pm25:+.1f} from current"
                     )
                 
@@ -650,40 +650,39 @@ def main():
                 col1, col2 = st.columns(2)
                 
                 with col1:
-                    st.markdown("### 📈 Average Forecast Level")
+                    st.markdown("### Average Forecast Level")
                     st.plotly_chart(create_gauge_chart(avg_prediction, "12-Hour Average"), use_container_width=True)
                     
                     # Health advisory
                     st.markdown(f"""
                     <div class="prediction-box" style="border-color: {pred_cat['color']}">
-                        <h3 style="color: {pred_cat['color']}">{pred_cat['emoji']} {pred_cat['level']}</h3>
+                        <h3 style="color: {pred_cat['color']}">{pred_cat['level']}</h3>
                         <p style="color: #ccc">{pred_cat['advice']}</p>
                     </div>
                     """, unsafe_allow_html=True)
                 
                 with col2:
-                    st.markdown("### 🎯 Input Feature Profile")
+                    st.markdown("### Input Feature Profile")
                     st.plotly_chart(create_feature_importance_chart(current_features), use_container_width=True)
                 
                 # Hourly breakdown table
-                st.markdown("### 📋 Hourly Forecast Breakdown")
+                st.markdown("### Hourly Forecast Breakdown")
                 forecast_df = pd.DataFrame({
                     'Hour': [f'+{i}h' for i in range(1, OUTPUT_HORIZON + 1)],
-                    'PM2.5 (μg/m³)': [f"{p:.1f}" for p in predictions],
-                    'Status': [get_aqi_category(p)['level'] for p in predictions],
-                    'Advisory': [get_aqi_category(p)['emoji'] for p in predictions]
+                    'PM2.5 (ug/m3)': [f"{p:.1f}" for p in predictions],
+                    'Status': [get_aqi_category(p)['level'] for p in predictions]
                 })
                 st.dataframe(forecast_df, use_container_width=True, hide_index=True)
     
-    elif input_mode == "📊 Sample Data":
-        st.markdown("## 📊 Sample Scenarios")
+    elif input_mode == "Sample Data":
+        st.markdown("## Sample Scenarios")
         st.markdown("Select a pre-defined scenario to see the model's predictions.")
         
         scenarios = {
-            "🌤️ Clean Day": {'PM2.5': 15, 'PM10': 25, 'TEMP': 22, 'PRES': 1015, 'DEWP': 12, 'WSPM': 4, 'NO2': 20, 'SO2': 5, 'CO': 400, 'O3': 80},
-            "🌫️ Moderate Pollution": {'PM2.5': 60, 'PM10': 100, 'TEMP': 18, 'PRES': 1010, 'DEWP': 8, 'WSPM': 2, 'NO2': 60, 'SO2': 25, 'CO': 1200, 'O3': 40},
-            "😷 Heavy Pollution": {'PM2.5': 180, 'PM10': 250, 'TEMP': 5, 'PRES': 1020, 'DEWP': -5, 'WSPM': 1, 'NO2': 120, 'SO2': 80, 'CO': 3000, 'O3': 20},
-            "🚨 Severe Smog": {'PM2.5': 350, 'PM10': 450, 'TEMP': 2, 'PRES': 1025, 'DEWP': -10, 'WSPM': 0.5, 'NO2': 200, 'SO2': 150, 'CO': 6000, 'O3': 10}
+            "Clean Day": {'PM2.5': 15, 'PM10': 25, 'TEMP': 22, 'PRES': 1015, 'DEWP': 12, 'WSPM': 4, 'NO2': 20, 'SO2': 5, 'CO': 400, 'O3': 80},
+            "Moderate Pollution": {'PM2.5': 60, 'PM10': 100, 'TEMP': 18, 'PRES': 1010, 'DEWP': 8, 'WSPM': 2, 'NO2': 60, 'SO2': 25, 'CO': 1200, 'O3': 40},
+            "Heavy Pollution": {'PM2.5': 180, 'PM10': 250, 'TEMP': 5, 'PRES': 1020, 'DEWP': -5, 'WSPM': 1, 'NO2': 120, 'SO2': 80, 'CO': 3000, 'O3': 20},
+            "Severe Smog": {'PM2.5': 350, 'PM10': 450, 'TEMP': 2, 'PRES': 1025, 'DEWP': -10, 'WSPM': 0.5, 'NO2': 200, 'SO2': 150, 'CO': 6000, 'O3': 10}
         }
         
         selected_scenario = st.selectbox("Select Scenario", list(scenarios.keys()))
@@ -699,8 +698,8 @@ def main():
         # Create input data
         input_data = np.tile(list(current_features.values()), (INPUT_WINDOW, 1))
         
-        if st.button("🔮 Generate Forecast", type="primary", use_container_width=True):
-            with st.spinner("🧠 Running prediction..."):
+        if st.button("Generate Forecast", type="primary", use_container_width=True):
+            with st.spinner("Running prediction..."):
                 predictions = predict_pm25(model, feature_scaler, target_scaler, input_data)
             
             if predictions is not None:
@@ -710,14 +709,14 @@ def main():
                 cat = get_aqi_category(avg_pred)
                 st.markdown(f"""
                 <div class="prediction-box" style="border-color: {cat['color']}">
-                    <h2 style="color: {cat['color']}">{cat['emoji']} {cat['level']}</h2>
-                    <h3 style="color: white">Average 12-Hour Forecast: {avg_pred:.1f} μg/m³</h3>
+                    <h2 style="color: {cat['color']}">{cat['level']}</h2>
+                    <h3 style="color: white">Average 12-Hour Forecast: {avg_pred:.1f} ug/m3</h3>
                     <p style="color: #ccc">{cat['advice']}</p>
                 </div>
                 """, unsafe_allow_html=True)
     
     else:  # Upload CSV
-        st.markdown("## 📁 Upload Historical Data")
+        st.markdown("## Upload Historical Data")
         st.markdown("""
         Upload a CSV file with 48 hours of historical data. The file should contain the following columns:
         `PM2.5, PM10, TEMP, PRES, DEWP, WSPM, NO2, SO2, CO, O3`
@@ -734,15 +733,15 @@ def main():
                     # Use last 48 rows
                     input_data = df[FEATURE_COLUMNS].tail(INPUT_WINDOW).values
                     
-                    if st.button("🔮 Generate Forecast", type="primary"):
-                        with st.spinner("🧠 Running prediction..."):
+                    if st.button("Generate Forecast", type="primary"):
+                        with st.spinner("Running prediction..."):
                             predictions = predict_pm25(model, feature_scaler, target_scaler, input_data)
                         
                         if predictions is not None:
                             current_pm25 = input_data[-1, 0]
                             st.plotly_chart(create_forecast_chart(predictions, current_pm25), use_container_width=True)
                 else:
-                    st.warning(f"⚠️ Need at least {INPUT_WINDOW} rows of data. Your file has {len(df)} rows.")
+                    st.warning(f"Need at least {INPUT_WINDOW} rows of data. Your file has {len(df)} rows.")
             
             except Exception as e:
                 st.error(f"Error reading file: {str(e)}")
@@ -751,7 +750,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center; color: #666; padding: 1rem;">
-        <p>🌫️ <strong>PM2.5 Air Quality Forecaster</strong> | Powered by Hybrid Transformer-LSTM Deep Learning</p>
+        <p><strong>PM2.5 Air Quality Forecaster</strong> | Powered by Hybrid Transformer-LSTM Deep Learning</p>
         <p>Developed by <strong>Sheryar Sher</strong> | Attention-Based Deep Learning for Hyper-Local Air Quality Prediction</p>
     </div>
     """, unsafe_allow_html=True)
@@ -759,4 +758,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
